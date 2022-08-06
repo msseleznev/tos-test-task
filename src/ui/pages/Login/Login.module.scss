@@ -1,0 +1,18 @@
+@import 'src/ui/common/styles/variables';
+@import 'src/ui/common/styles/mixins';
+
+.loginBlock {
+  @include block();
+
+  .loginContainer {
+    @include container();
+
+    .form {
+      @include form();
+
+      .loginButtonBlock {
+        @include formButtonBlock();
+      }
+    }
+  }
+}
