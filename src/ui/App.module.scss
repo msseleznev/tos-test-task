@@ -1,5 +1,21 @@
-.appBlock {
+.content {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: auto;
+  max-width: 1079px;
+  height: 100%;
+
+  .search {
+    max-width: 631px;
+    height: 52px;
+
+  }
+
+  .table {
+    height: 80%;
+    min-width: 668px;
+  }
 }

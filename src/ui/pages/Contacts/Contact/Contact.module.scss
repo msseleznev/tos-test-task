@@ -1,0 +1,23 @@
+tbody {
+  tr {
+    td {
+      border: 1px solid #E3E6EC;
+      padding: 10px;
+    }
+
+    .idRow {
+      text-align: center;
+    }
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      cursor: pointer;
+    }
+    .iconEdit:hover{
+      color: #4CAF50;
+    }
+    .iconDelete:hover{
+      color: #d53737;
+    }
+  }
+}

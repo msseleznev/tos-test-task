@@ -2,17 +2,17 @@
   "contacts": [
     {
       "id": 2,
-      "name": "234234",
+      "name": "Alex",
       "phone": "131"
     },
     {
       "id": 3,
-      "name": "234234",
+      "name": "Tom",
       "phone": "131"
     },
     {
       "id": 4,
-      "name": "234234",
+      "name": "Tim",
       "phone": "131"
     }
   ],

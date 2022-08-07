@@ -9,7 +9,7 @@ type DefaultInputPropsType = DetailedHTMLProps<
 
 type SuperInputTextPropsType = DefaultInputPropsType & {
   onChangeText: (value: string) => void;
-  error: string;
+  error?: string;
   spanClassName?: string;
   customStyle?: string;
 };

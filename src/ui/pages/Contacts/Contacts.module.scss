@@ -1,0 +1,83 @@
+@import 'src/ui/common/styles/variables';
+.content {
+  flex-direction: column;
+  justify-content: space-between;
+
+ padding: 20px;
+  margin: auto;
+  max-width: 1079px;
+  height: 100%;
+  box-shadow:  0 4px 27px #E6E7EAC6;
+  .inputBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .button {
+      color: #ffffff;
+      border: none;
+      background: #5A5C66;
+      cursor: pointer;
+      text-align: center;
+      padding: 10px 10px;
+      transition: all 0.5s;
+      width: 100px;
+      height: 45px;
+      margin-left: 5px;
+    }
+
+    .button:hover {
+      background: #81C4A4FF;
+      color: #ffffff;
+    }
+  }
+
+  .tableBlock {
+    min-height: 668px;
+    font-weight: 500;
+    font-size: 13px;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      border: 0;
+
+      thead {
+        tr {
+          th {
+            color: #FFFFFF;
+            height: 54px;
+            background-color: #474955;
+            border: 1px solid #474955;
+          }
+
+          .nameColum {
+            width: 40%;
+          }
+
+          .phoneColum {
+            width: 40%;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            border: 1px solid #E3E6EC;
+            padding: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .table {
+    height: 80%;
+    min-width: 668px;
+  }
+}
+

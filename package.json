@@ -32,22 +32,16 @@
     "start_old": "react-scripts start",
     "start": "concurrently \"yarn run server\" \"yarn run start_old\"",
     "build": "react-scripts build",
-    "lint-fix": "eslint --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "server": "json-server -w server/db.json -p 3001",
     "prepare": "husky install",
-    "server": "json-server -w server/db.json -p 3001"
+    "lint-fix": "eslint --fix"
   },
   "lint-staged": {
     "**/*.{js,ts,jsx,tsx}": [
       "npm run lint-fix",
       "prettier --write"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
     ]
   },
   "browserslist": {

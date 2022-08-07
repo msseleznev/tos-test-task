@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { Navigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../hooks/hooks';
-import { Button } from '../../common/button/button';
+import { Button } from '../../common/Button/Button';
 import { InputText } from '../../common/InputText/InputText';
 import paperStyle from '../../common/styles/classes.module.scss';
 import { PATH } from '../../routes/RoutesApp';
@@ -12,7 +12,7 @@ import { PATH } from '../../routes/RoutesApp';
 import style from './Login.module.scss';
 
 import { LoginParamsType } from 'types/types';
-import { Preloader } from 'ui/common/preloader/preloader';
+import { Preloader } from 'ui/common/Preloader/Preloader';
 
 export const Login: React.FC = () => {
   const isLoggedIn = false;
