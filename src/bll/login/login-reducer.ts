@@ -4,7 +4,7 @@ type SliceState = {
   isLoggedIn: boolean;
 };
 const initialState: SliceState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
 };
 const slice = createSlice({
   name: 'login',

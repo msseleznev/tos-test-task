@@ -4,6 +4,11 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons/faPencil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import {
+  deleteContactTC,
+  editContactTC,
+} from '../../../../bll/contacts/contacts-reducer';
+import { useAppDispatch } from '../../../../hooks/hooks';
 import { ContactType } from '../../../../types/types';
 import { Button } from '../../../common/Button/Button';
 import { InputText } from '../../../common/InputText/InputText';
@@ -16,6 +21,8 @@ type PackPropsType = {
 };
 
 export const Contact: React.FC<PackPropsType> = ({ data }) => {
+  const dispatch = useAppDispatch();
+
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [modalMod, setModalMod] = useState<'delete' | 'edit'>('delete');
   const [newContactName, setNewContactName] = useState(data.name);
@@ -30,12 +37,16 @@ export const Contact: React.FC<PackPropsType> = ({ data }) => {
     }
   };
   const deleteContact = (): void => {
-    // dispatch(deletePackTC(data._id));
+    dispatch(deleteContactTC(data.id));
     setModalActive(false);
   };
 
   const editContact = (): void => {
-    // dispatch(editPackTC({_id: data._id, name: newPackName, deckCover: file64}));
+    if (data.name !== newContactName || data.phone !== newContactPhone) {
+      dispatch(
+        editContactTC({ id: data.id, name: newContactName, phone: newContactPhone }),
+      );
+    }
     setModalActive(false);
   };
 

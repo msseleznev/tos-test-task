@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useAppSelector } from '../../../hooks/hooks';
+import { getContactsTC } from '../../../bll/contacts/contacts-reducer';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { Search } from '../../common/Search/Search';
+import { Skeleton } from '../../common/Skeleton/Skeleton';
 import { SortItem } from '../../common/SortItem/SortItem';
 
 import { Contact } from './Contact/Contact';
@@ -9,6 +11,12 @@ import style from './Contacts.module.scss';
 
 export const Contacts: React.FC = () => {
   const contacts = useAppSelector(state => state.contacts.contacts);
+  const isAppFetching = useAppSelector(state => state.app.isAppFetching);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getContactsTC());
+  }, []);
 
   return (
     <div className={style.content}>
@@ -18,6 +26,7 @@ export const Contacts: React.FC = () => {
       </div>
 
       <div className={style.tableBlock}>
+        {isAppFetching && <Skeleton />}
         <table>
           <thead>
             <tr>

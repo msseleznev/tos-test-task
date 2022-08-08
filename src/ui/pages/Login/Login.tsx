@@ -3,7 +3,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { Navigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { Button } from '../../common/Button/Button';
 import { InputText } from '../../common/InputText/InputText';
 import paperStyle from '../../common/styles/classes.module.scss';
@@ -15,8 +15,8 @@ import { LoginParamsType } from 'types/types';
 import { Preloader } from 'ui/common/Preloader/Preloader';
 
 export const Login: React.FC = () => {
-  const isLoggedIn = false;
-  const isAppFetching = false;
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
+  const isAppFetching = useAppSelector(state => state.app.isAppFetching);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useAppDispatch();
   const formik = useFormik({

@@ -3,7 +3,7 @@ export type LoginParamsType = {
   password: string;
 };
 export type ContactType = {
-  id: number;
+  id: string;
   name: string;
   phone: string;
 };

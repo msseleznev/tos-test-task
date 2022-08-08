@@ -1,13 +1,16 @@
 @import 'src/ui/common/styles/variables';
+
 .content {
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 
- padding: 20px;
+  padding: 20px;
   margin: auto;
   max-width: 1079px;
   height: 100%;
-  box-shadow:  0 4px 27px #E6E7EAC6;
+  box-shadow: 0 4px 27px #E6E7EAC6;
+
   .inputBlock {
     display: flex;
     align-items: center;

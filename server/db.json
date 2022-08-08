@@ -1,27 +1,19 @@
 {
   "contacts": [
     {
-      "id": 2,
+      "id": "2",
       "name": "Alex",
       "phone": "131"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Tom",
       "phone": "131"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Tim",
       "phone": "131"
-    }
-  ],
-  "profile": [
-    {
-      "id": 1,
-      "login": "admin",
-      "password": "admin",
-      "name": "Mike"
     }
   ]
 }
