@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { Navigate } from 'react-router-dom';
 import { v1 } from 'uuid';
 
 import { createContactTC, getContactsTC } from '../../../bll/contacts/contacts-reducer';
@@ -10,6 +11,7 @@ import Modal from '../../common/Modal/Modal';
 import { Search } from '../../common/Search/Search';
 import { Skeleton } from '../../common/Skeleton/Skeleton';
 import { SortItem } from '../../common/SortItem/SortItem';
+import { PATH } from '../../routes/RoutesApp';
 
 import { Contact } from './Contact/Contact';
 import style from './Contacts.module.scss';
@@ -17,6 +19,7 @@ import style from './Contacts.module.scss';
 export const Contacts: React.FC = () => {
   const contacts = useAppSelector(state => state.contacts.contactsForRender);
   const isAppFetching = useAppSelector(state => state.app.isAppFetching);
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const isNotFound = useAppSelector(state => state.contacts.isNotFound);
   const dispatch = useAppDispatch();
 
@@ -44,6 +47,9 @@ export const Contacts: React.FC = () => {
   useEffect(() => {
     dispatch(getContactsTC());
   }, []);
+  if (!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   return (
     <div className={style.content}>

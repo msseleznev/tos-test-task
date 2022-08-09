@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { Navigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../bll/hooks/hooks';
+import { loginTC } from '../../../bll/login/login-reducer';
 import { Button } from '../../common/Button/Button';
 import { InputText } from '../../common/InputText/InputText';
 import paperStyle from '../../common/styles/classes.module.scss';
@@ -25,9 +26,8 @@ export const Login: React.FC = () => {
       password: '',
     } as LoginParamsType,
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onSubmit: (values: LoginParamsType) => {
-      // dispatch(loginTC(values))
+      dispatch(loginTC(values));
     },
     validate: (values: LoginParamsType) => {
       const errors = {} as LoginParamsType;

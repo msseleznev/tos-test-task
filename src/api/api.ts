@@ -1,17 +1,33 @@
 import axios from 'axios';
 
-import { ContactType } from '../types/types';
+import { loadToken } from '../bll/utils/localstorage-utils';
+import { ContactType, LoginParamsType } from '../types/types';
 
 enum BASE_URLS {
-  LOCAL = 'http://localhost:3001',
+  LOCAL = 'http://localhost:8000',
 }
+const token = loadToken();
 
 export const instance = axios.create({
   baseURL: BASE_URLS.LOCAL,
-  withCredentials: true,
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
 });
 
 // REQUESTS
+
+export const authAPI = {
+  me() {
+    return instance.get('me');
+  },
+  login(params: LoginParamsType) {
+    return instance.post('auth/login', {
+      email: params.login,
+      password: params.password,
+    });
+  },
+};
 
 export const contactsAPI = {
   getContacts() {

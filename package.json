@@ -20,6 +20,8 @@
     "concurrently": "^7.3.0",
     "formik": "^2.2.9",
     "json-server": "^0.17.0",
+    "body-parser": "^1.19.0",
+    "jsonwebtoken": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
@@ -34,11 +36,12 @@
   },
   "scripts": {
     "start_old": "react-scripts start",
-    "start": "concurrently \"yarn run server\" \"yarn run start_old\"",
+    "start": "concurrently \"yarn run start-auth\" \"yarn run start_old\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "json-server -w server/db.json -p 3001",
+    "start-auth": "node server/server.js",
     "prepare": "husky install",
     "lint-fix": "eslint --fix"
   },

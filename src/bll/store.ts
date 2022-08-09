@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import { AppActionsType, appReducer } from './app/app-reducer';
 import { ContactsActionsType, contactsReducer } from './contacts/contacts-reducer';
-import { loginReducer } from './login/login-reducer';
+import { LoginActionsType, loginReducer } from './login/login-reducer';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -19,7 +19,7 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export type ActionsType = ContactsActionsType | AppActionsType;
+export type ActionsType = ContactsActionsType | AppActionsType | LoginActionsType;
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,

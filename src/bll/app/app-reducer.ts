@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { authAPI } from '../../api/api';
 import { MESSAGES_FOR_SUCCESS_BAR } from '../../ui/common/SnackBar/SnackBar';
-import { NullableType } from '../store';
+import { setIsLoggedIn } from '../login/login-reducer';
+import { AppThunk, NullableType } from '../store';
 
 type SliceStateType = {
   appError: NullableType<string>;
@@ -12,7 +14,7 @@ type SliceStateType = {
 const initialState: SliceStateType = {
   appError: '',
   appMessage: '' as MESSAGES_FOR_SUCCESS_BAR,
-  appIsInitialize: true,
+  appIsInitialize: false,
   isAppFetching: false,
 };
 const slice = createSlice({
@@ -43,3 +45,16 @@ export type AppActionsType =
 export const appReducer = slice.reducer;
 export const { setAppError, setAppIsInitialize, setIsAppFetching, setAppMessage } =
   slice.actions;
+export const initializeApp = (): AppThunk => dispatch => {
+  authAPI
+    .me()
+    .then(() => {
+      dispatch(setIsLoggedIn(true));
+    })
+    .catch(() => {
+      dispatch(setIsLoggedIn(false));
+    })
+    .finally(() => {
+      dispatch(setAppIsInitialize(true));
+    });
+};

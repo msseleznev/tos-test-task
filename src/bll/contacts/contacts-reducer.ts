@@ -102,11 +102,17 @@ export const createContactTC =
 export const searchContactTC =
   (searchValue: string): AppThunk =>
   dispatch => {
+    dispatch(setIsAppFetching(true));
     dispatch(setIsNotFound(false));
-    contactsAPI.searchContact(searchValue).then(res => {
-      if (res.data.length === 0) {
-        dispatch(setIsNotFound(true));
-      }
-      dispatch(getContacts(res.data));
-    });
+    contactsAPI
+      .searchContact(searchValue)
+      .then(res => {
+        if (res.data.length === 0) {
+          dispatch(setIsNotFound(true));
+        }
+        dispatch(getContacts(res.data));
+      })
+      .finally(() => {
+        dispatch(setIsAppFetching(false));
+      });
   };
