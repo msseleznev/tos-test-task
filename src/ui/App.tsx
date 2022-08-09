@@ -6,7 +6,7 @@ import { SnackBar, SNACK_BAR_TYPES } from './common/SnackBar/SnackBar';
 import { Header } from './header/Header';
 import { RoutesApp } from './routes/RoutesApp';
 
-import { useAppSelector } from 'hooks/hooks';
+import { useAppSelector } from 'bll/hooks/hooks';
 
 const App: React.FC = () => {
   const { appIsInitialize, appError, appMessage } = useAppSelector(state => state.app);

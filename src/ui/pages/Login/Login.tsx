@@ -3,7 +3,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { Navigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../bll/hooks/hooks';
 import { Button } from '../../common/Button/Button';
 import { InputText } from '../../common/InputText/InputText';
 import paperStyle from '../../common/styles/classes.module.scss';

@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 
+import {
+  setSorting,
+  SortOptionsType,
+  SortOrderType,
+} from '../../../bll/contacts/contacts-reducer';
+import { useAppDispatch } from '../../../bll/hooks/hooks';
+
 import style from './SortItem.module.scss';
 
 type SortItemType = {
   title: string;
+  sortOptions: SortOptionsType;
 };
 
-export const SortItem: React.FC<SortItemType> = ({ title }) => {
-  const [sortOrder, setSortOrder] = useState('down');
+export const SortItem: React.FC<SortItemType> = ({ title, sortOptions }) => {
+  const dispatch = useAppDispatch();
+  const [sortOrder, setSortOrder] = useState<SortOrderType>('down');
   const sort = (): void => {
     if (sortOrder === 'down') {
       setSortOrder('up');
@@ -15,7 +24,7 @@ export const SortItem: React.FC<SortItemType> = ({ title }) => {
     if (sortOrder === 'up') {
       setSortOrder('down');
     }
-    // dispatch(setSorting({ sortOrder, sortOptions }));
+    dispatch(setSorting({ sortOptions, sortOrder }));
   };
 
   const styleToggle =

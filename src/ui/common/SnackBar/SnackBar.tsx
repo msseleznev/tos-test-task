@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
 
 import { setAppError, setAppMessage } from '../../../bll/app/app-reducer';
+import { useAppDispatch } from '../../../bll/hooks/hooks';
 import { NullableType } from '../../../bll/store';
-import { useAppDispatch } from '../../../hooks/hooks';
 
 import style from './SnackBar.module.scss';
 

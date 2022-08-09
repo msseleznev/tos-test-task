@@ -33,4 +33,7 @@ export const contactsAPI = {
       phone: params.phone,
     });
   },
+  searchContact(searchValue: string) {
+    return instance.get(`contacts?name_like=${searchValue}`);
+  },
 };

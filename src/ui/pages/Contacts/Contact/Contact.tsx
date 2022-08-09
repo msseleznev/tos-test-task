@@ -8,7 +8,7 @@ import {
   deleteContactTC,
   editContactTC,
 } from '../../../../bll/contacts/contacts-reducer';
-import { useAppDispatch } from '../../../../hooks/hooks';
+import { useAppDispatch } from '../../../../bll/hooks/hooks';
 import { ContactType } from '../../../../types/types';
 import { Button } from '../../../common/Button/Button';
 import { InputText } from '../../../common/InputText/InputText';

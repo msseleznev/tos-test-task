@@ -30,7 +30,6 @@ const slice = createSlice({
     },
     setAppMessage(state, action: PayloadAction<MESSAGES_FOR_SUCCESS_BAR>) {
       state.appMessage = action.payload;
-      debugger; // eslint-disable-line no-debugger
     },
   },
 });

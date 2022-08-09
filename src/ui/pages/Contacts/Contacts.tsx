@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { v1 } from 'uuid';
 
 import { createContactTC, getContactsTC } from '../../../bll/contacts/contacts-reducer';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../bll/hooks/hooks';
 import { Button } from '../../common/Button/Button';
 import { InputText } from '../../common/InputText/InputText';
 import Modal from '../../common/Modal/Modal';
@@ -15,8 +15,9 @@ import { Contact } from './Contact/Contact';
 import style from './Contacts.module.scss';
 
 export const Contacts: React.FC = () => {
-  const contacts = useAppSelector(state => state.contacts.contacts);
+  const contacts = useAppSelector(state => state.contacts.contactsForRender);
   const isAppFetching = useAppSelector(state => state.app.isAppFetching);
+  const isNotFound = useAppSelector(state => state.contacts.isNotFound);
   const dispatch = useAppDispatch();
 
   const [modalActive, setModalActive] = useState<boolean>(false);
@@ -62,18 +63,20 @@ export const Contacts: React.FC = () => {
           <thead>
             <tr>
               <th className={style.nameColum}>
-                <SortItem title="Name" />
+                <SortItem title="Name" sortOptions="name" />
               </th>
               <th className={style.phoneColum}>
-                <SortItem title="Phone number" />
+                <SortItem title="Phone number" sortOptions="phone" />
               </th>
               <th className={style.descriptionColum}>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {contacts.map(c => (
-              <Contact key={c.id} data={c} />
-            ))}
+            {isNotFound ? (
+              <h3>Nothing found for your search</h3>
+            ) : (
+              contacts.map(c => <Contact key={c.id} data={c} />)
+            )}
           </tbody>
         </table>
       </div>

@@ -8,25 +8,54 @@ import { setAppError, setAppMessage, setIsAppFetching } from '../app/app-reducer
 import { AppThunk } from '../store';
 
 type SliceStateType = {
-  contacts: ContactType[];
+  contactsData: ContactType[];
+  contactsForRender: ContactType[];
+  isNotFound: boolean;
 };
+export type SortOptionsType = 'name' | 'phone';
+export type SortOrderType = 'up' | 'down';
 const initialState: SliceStateType = {
-  contacts: [],
+  contactsData: [],
+  contactsForRender: [],
+  isNotFound: false,
 };
 const slice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
     getContacts(state, action: PayloadAction<ContactType[]>) {
-      state.contacts = action.payload;
+      state.contactsData = action.payload;
+      state.contactsForRender = action.payload;
+    },
+    setSorting(
+      state,
+      action: PayloadAction<{ sortOptions: SortOptionsType; sortOrder: SortOrderType }>,
+    ) {
+      const sortUsersData = state.contactsData.sort((a, b) =>
+        a[action.payload.sortOptions] <= b[action.payload.sortOptions] ? -1 : 1,
+      );
+
+      if (action.payload.sortOrder === 'down') {
+        state.contactsForRender = sortUsersData;
+      }
+
+      if (action.payload.sortOrder === 'up') {
+        state.contactsForRender = sortUsersData.reverse();
+      }
+    },
+    setIsNotFound(state, action: PayloadAction<boolean>) {
+      state.isNotFound = action.payload;
     },
   },
 });
 
-export type ContactsActionsType = ReturnType<typeof getContacts>;
+export type ContactsActionsType =
+  | ReturnType<typeof getContacts>
+  | ReturnType<typeof setSorting>
+  | ReturnType<typeof setIsNotFound>;
 
 export const contactsReducer = slice.reducer;
-export const { getContacts } = slice.actions;
+export const { getContacts, setSorting, setIsNotFound } = slice.actions;
 
 export const getContactsTC = (): AppThunk => dispatch => {
   dispatch(setIsAppFetching(true));
@@ -49,51 +78,35 @@ export const getContactsTC = (): AppThunk => dispatch => {
 export const deleteContactTC =
   (id: string): AppThunk =>
   dispatch => {
-    contactsAPI
-      .deleteContact(id)
-      .then(() => {
-        dispatch(getContactsTC());
-        dispatch(setAppMessage(MESSAGES_FOR_SUCCESS_BAR.CONTACT_SUCCESSFULLY_REMOVED));
-      })
-      .catch(e => {
-        const error = e.response
-          ? e.response.data.error
-          : `${e.message}, more details in the console`;
-
-        console.log(error);
-      });
+    contactsAPI.deleteContact(id).then(() => {
+      dispatch(getContactsTC());
+      dispatch(setAppMessage(MESSAGES_FOR_SUCCESS_BAR.CONTACT_SUCCESSFULLY_REMOVED));
+    });
   };
 export const editContactTC =
   (params: ContactType): AppThunk =>
   dispatch => {
-    contactsAPI
-      .editContact(params)
-      .then(() => {
-        dispatch(getContactsTC());
-        dispatch(setAppMessage(MESSAGES_FOR_SUCCESS_BAR.CONTACT_CHANGED_SUCCESSFULLY));
-      })
-      .catch(e => {
-        const error = e.response
-          ? e.response.data.error
-          : `${e.message}, more details in the console`;
-
-        console.log(error);
-      });
+    contactsAPI.editContact(params).then(() => {
+      dispatch(getContactsTC());
+      dispatch(setAppMessage(MESSAGES_FOR_SUCCESS_BAR.CONTACT_CHANGED_SUCCESSFULLY));
+    });
   };
 export const createContactTC =
   (params: ContactType): AppThunk =>
   dispatch => {
-    contactsAPI
-      .createContact(params)
-      .then(() => {
-        dispatch(getContactsTC());
-        dispatch(setAppMessage(MESSAGES_FOR_SUCCESS_BAR.NEW_CONTACT_SUCCESSFULLY_ADDED));
-      })
-      .catch(e => {
-        const error = e.response
-          ? e.response.data.error
-          : `${e.message}, more details in the console`;
-
-        console.log(error);
-      });
+    contactsAPI.createContact(params).then(() => {
+      dispatch(getContactsTC());
+      dispatch(setAppMessage(MESSAGES_FOR_SUCCESS_BAR.NEW_CONTACT_SUCCESSFULLY_ADDED));
+    });
+  };
+export const searchContactTC =
+  (searchValue: string): AppThunk =>
+  dispatch => {
+    dispatch(setIsNotFound(false));
+    contactsAPI.searchContact(searchValue).then(res => {
+      if (res.data.length === 0) {
+        dispatch(setIsNotFound(true));
+      }
+      dispatch(getContacts(res.data));
+    });
   };
