@@ -25,6 +25,7 @@ git clone https://github.com/msseleznev/tos-test-task.git
 cd tos-test-task
 yarn
 yarn start
+
 login: admin
 password: admin
 ```

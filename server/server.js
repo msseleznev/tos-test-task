@@ -82,5 +82,5 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
 server.use(router);
 
 server.listen(8000, () => {
-  console.log('Run Auth API Server');
+  console.log('Run Auth API Server http://localhost:8000');
 });

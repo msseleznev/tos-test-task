@@ -12,28 +12,23 @@
       "phone": "484468484"
     },
     {
-      "id": "3acb6d20-181a-11ed-99cc-e317626d496e",
-      "name": "name",
-      "phone": "phone"
-    },
-    {
       "id": "129fcce0-187b-11ed-b646-1b03445d52f3",
-      "name": "dfsdfsd",
+      "name": "Bob",
       "phone": "4324324654645"
     },
     {
       "id": "54a77540-187e-11ed-a8ae-4761ed33c540",
-      "name": "dfsdfs",
+      "name": "Mike",
       "phone": "23432423"
     },
     {
       "id": "2616bda0-18c2-11ed-85fa-d3564f077a5c",
-      "name": "dgsdgg",
+      "name": "Hana",
       "phone": "456456456546"
     },
     {
       "id": "84a5bdd0-18c2-11ed-9e00-2fdb20bea631",
-      "name": "6456",
+      "name": "Elis",
       "phone": "6456456"
     }
   ]
