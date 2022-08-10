@@ -18,7 +18,6 @@ import { Preloader } from 'ui/common/Preloader/Preloader';
 export const Login: React.FC = () => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const isAppFetching = useAppSelector(state => state.app.isAppFetching);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useAppDispatch();
   const formik = useFormik({
     initialValues: {

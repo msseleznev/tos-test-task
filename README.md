@@ -23,8 +23,8 @@
 ```
 git clone https://github.com/msseleznev/tos-test-task.git
 cd tos-test-task
-npm i / yarn
-npm start / yarn start
+yarn
+yarn start
 login: admin
 password: admin
 ```

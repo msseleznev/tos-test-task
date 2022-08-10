@@ -27,7 +27,7 @@ export const authAPI = {
   },
   login(params: LoginParamsType) {
     return instance.post('auth/login', {
-      email: params.login,
+      login: params.login,
       password: params.password,
     });
   },
