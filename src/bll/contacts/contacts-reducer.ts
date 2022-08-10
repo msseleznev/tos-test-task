@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { contactsAPI } from '../../api/api';
-import { ContactType } from '../../types/types';
+import { ContactType, SortOptionsType, SortOrderType } from '../../types/types';
 import { MESSAGES_FOR_SUCCESS_BAR } from '../../ui/common/SnackBar/SnackBar';
-import { setAppError, setAppMessage, setIsAppFetching } from '../app/app-reducer';
+import { setAppMessage, setIsAppFetching } from '../app/app-reducer';
 import { AppThunk } from '../store';
 
 type SliceStateType = {
@@ -12,8 +11,7 @@ type SliceStateType = {
   contactsForRender: ContactType[];
   isNotFound: boolean;
 };
-export type SortOptionsType = 'name' | 'phone';
-export type SortOrderType = 'up' | 'down';
+
 const initialState: SliceStateType = {
   contactsData: [],
   contactsForRender: [],
@@ -64,13 +62,7 @@ export const getContactsTC = (): AppThunk => dispatch => {
     .then(res => {
       dispatch(getContacts(res.data));
     })
-    .catch(error => {
-      const data = error?.response?.data;
-
-      if (axios.isAxiosError(error) && data) {
-        dispatch(setAppError(data.error || 'Some error occurred'));
-      } else dispatch(setAppError(`${error.message}. More details in the console`));
-    })
+    .catch(() => {})
     .finally(() => {
       dispatch(setIsAppFetching(false));
     });

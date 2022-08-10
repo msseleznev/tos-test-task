@@ -6,13 +6,17 @@ import { ContactType, LoginParamsType } from '../types/types';
 enum BASE_URLS {
   LOCAL = 'http://localhost:8000',
 }
-const token = loadToken();
 
 export const instance = axios.create({
   baseURL: BASE_URLS.LOCAL,
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
+});
+instance.interceptors.request.use(config => {
+  const token = loadToken();
+  const theConfig = config;
+
+  (theConfig.headers ??= {}).Authorization = token ? `Bearer ${token}` : '';
+
+  return theConfig;
 });
 
 // REQUESTS

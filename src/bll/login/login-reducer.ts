@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { LoginParamsType } from '../../types/types';
 import { MESSAGES_FOR_SUCCESS_BAR } from '../../ui/common/SnackBar/SnackBar';
-import { setAppMessage, setIsAppFetching } from '../app/app-reducer';
-import { saveToken } from '../utils/localstorage-utils';
+import { setAppError, setAppMessage, setIsAppFetching } from '../app/app-reducer';
 
 import { authAPI } from 'api/api';
 import { AppThunk } from 'bll/store';
+import { saveToken } from 'bll/utils/localstorage-utils';
 
 type SliceState = {
   isLoggedIn: boolean;
@@ -40,7 +40,7 @@ export const loginTC =
         dispatch(setAppMessage(MESSAGES_FOR_SUCCESS_BAR.LOGGED_IN_SUCCESSFULLY));
       })
       .catch(() => {
-        dispatch(setIsLoggedIn(false));
+        dispatch(setAppError('Incorrect email or password'));
       })
       .finally(() => {
         dispatch(setIsAppFetching(false));

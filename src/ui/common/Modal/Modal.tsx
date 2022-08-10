@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './Modal.module.css';
+import s from './Modal.module.scss';
 
 type ModalPropsType = {
   active: boolean;

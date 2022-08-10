@@ -31,8 +31,8 @@ type ErrorBarPropsType = {
 };
 
 const TIMERS = {
-  CLOSE_SNACK_BAR: 2000,
-  CLEAR_APP_ERROR: 2200,
+  CLOSE_SNACK_BAR: 3000,
+  CLEAR_APP_ERROR: 3200,
   CLOSE_ON_CLICK: 300,
 };
 

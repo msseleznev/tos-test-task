@@ -1,0 +1,28 @@
+@import 'src/ui/common/styles/variables';
+@import 'src/ui/common/styles/mixins';
+
+.headerWrapper {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  background-color: $inverse;
+  .button {
+    color: #ffffff;
+    border: none;
+    background: #5A5C66;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.5s;
+    width: 100px;
+    height: 100%;
+    margin-right: 50px;
+  }
+
+  .button:hover {
+    background: #81C4A4FF;
+    color: #ffffff;
+  }
+
+}

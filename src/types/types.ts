@@ -7,3 +7,5 @@ export type ContactType = {
   name: string;
   phone: string;
 };
+export type SortOptionsType = 'name' | 'phone';
+export type SortOrderType = 'up' | 'down';

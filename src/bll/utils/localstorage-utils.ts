@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const loadToken = () => {
+export const loadToken = (): JSON | undefined => {
   try {
     const serializedToken = localStorage.getItem('access_token');
 
@@ -14,9 +13,9 @@ export const loadToken = () => {
 };
 export const saveToken = (token: string): void => {
   try {
-    const serializedState = JSON.stringify(token);
+    const serializedToken = JSON.stringify(token);
 
-    localStorage.setItem('access_token', serializedState);
+    localStorage.setItem('access_token', serializedToken);
   } catch {
     // ignore write errors
   }
