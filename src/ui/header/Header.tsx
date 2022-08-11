@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const onLogoutClickHandler = (): void => {
-    localStorage.clear();
+    localStorage.removeItem('access_token');
     dispatch(initializeApp());
   };
 
