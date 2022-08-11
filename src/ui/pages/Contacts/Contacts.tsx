@@ -66,7 +66,7 @@ export const Contacts: React.FC = () => {
             {isNotFound ? (
               <h3>Nothing found for your search</h3>
             ) : (
-              contacts.map(c => <Contact key={c.id} data={c} />)
+              contacts.map(contact => <Contact key={contact.id} data={contact} />)
             )}
           </tbody>
         </table>
